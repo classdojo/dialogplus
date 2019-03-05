@@ -28,7 +28,7 @@ public class DialogPlus {
   /**
    * Determines whether dialog should be dismissed by back button or touch in the black overlay
    */
-  private final boolean isCancelable;
+  private boolean isCancelable;
 
   /**
    * Determines whether dialog is showing dismissing animation and avoid to repeat it
@@ -145,6 +145,13 @@ public class DialogPlus {
   public boolean isShowing() {
     View view = decorView.findViewById(R.id.dialogplus_outmost_container);
     return view != null;
+  }
+
+  /**
+   * Set whether the dialog is cancelable
+   */
+  public void setCancelable(boolean cancelable) {
+    isCancelable = cancelable;
   }
 
   /**
@@ -371,6 +378,9 @@ public class DialogPlus {
    * Invoked when back button is pressed. Automatically dismiss the dialog.
    */
   public void onBackPressed(@NonNull DialogPlus dialogPlus) {
+    if(!isCancelable) {
+      return;
+    }
     if (onCancelListener != null) {
       onCancelListener.onCancel(DialogPlus.this);
     }
@@ -383,6 +393,9 @@ public class DialogPlus {
   private final View.OnTouchListener onCancelableTouchListener = new View.OnTouchListener() {
     @Override public boolean onTouch(View v, MotionEvent event) {
       if (event.getAction() == MotionEvent.ACTION_DOWN) {
+        if(!isCancelable) {
+          return true;
+        }
         if (onCancelListener != null) {
           onCancelListener.onCancel(DialogPlus.this);
         }
