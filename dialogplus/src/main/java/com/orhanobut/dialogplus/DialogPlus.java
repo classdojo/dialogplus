@@ -155,6 +155,13 @@ public class DialogPlus {
   }
 
   /**
+   * Returns whether the dialog is cancelable
+   */
+  public boolean isCancelable() {
+    return isCancelable;
+  }
+
+  /**
    * Dismisses the displayed dialog.
    */
   public void dismiss() {
