@@ -254,6 +254,7 @@ public class DialogPlus {
     params.setMargins(margin[0], margin[1], margin[2], margin[3]);
     contentView.setLayoutParams(params);
     getHolderView().setPadding(padding[0], padding[1], padding[2], padding[3]);
+    contentView.setClickable(true);
     contentContainer.addView(contentView);
   }
 
