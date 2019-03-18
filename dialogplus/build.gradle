@@ -1,3 +1,4 @@
+apply plugin: 'maven'
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
@@ -25,4 +26,17 @@ dependencies {
   testImplementation deps.kotlin
 }
 
-apply from: rootProject.file('gradle/maven_push.gradle')
+afterEvaluate {
+  uploadArchives {
+    repositories {
+      mavenDeployer {
+        repository(url: "${artifactory_contextUrl}/list/libs-release-local") {
+          authentication(userName: "${artifactory_user}", password: "${artifactory_password}")
+        }
+        pom.project {
+          packaging 'aar'
+        }
+      }
+    }
+  }
+}

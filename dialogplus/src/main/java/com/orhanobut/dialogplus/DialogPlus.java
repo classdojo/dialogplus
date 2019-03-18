@@ -386,7 +386,7 @@ public class DialogPlus {
    * Invoked when back button is pressed. Automatically dismiss the dialog.
    */
   public void onBackPressed(@NonNull DialogPlus dialogPlus) {
-    if(!isCancelable) {
+    if (!isCancelable) {
       return;
     }
     if (onCancelListener != null) {
@@ -401,7 +401,7 @@ public class DialogPlus {
   private final View.OnTouchListener onCancelableTouchListener = new View.OnTouchListener() {
     @Override public boolean onTouch(View v, MotionEvent event) {
       if (event.getAction() == MotionEvent.ACTION_DOWN) {
-        if(!isCancelable) {
+        if (!isCancelable) {
           return true;
         }
         if (onCancelListener != null) {
