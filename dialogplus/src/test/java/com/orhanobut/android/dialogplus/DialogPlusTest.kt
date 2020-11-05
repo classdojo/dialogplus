@@ -1,15 +1,17 @@
 package com.orhanobut.android.dialogplus
 
 import android.app.Activity
+import android.os.Looper.getMainLooper
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.google.common.truth.Truth.assertThat
 import com.orhanobut.dialogplus.DialogPlus
 import com.orhanobut.dialogplus.ViewHolder
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
+import org.robolectric.Shadows.shadowOf
 
 @RunWith(RobolectricTestRunner::class)
 class DialogPlusTest {
@@ -27,6 +29,7 @@ class DialogPlusTest {
     dialog.show()
     assertThat(dialog.isShowing).isTrue()
     dialog.dismiss()
+    shadowOf(getMainLooper()).idle()
     assertThat(dialog.isShowing).isFalse()
   }
 

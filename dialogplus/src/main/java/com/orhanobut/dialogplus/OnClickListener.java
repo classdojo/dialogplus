@@ -1,7 +1,8 @@
 package com.orhanobut.dialogplus;
 
-import android.support.annotation.NonNull;
 import android.view.View;
+
+import androidx.annotation.NonNull;
 
 /**
  * Used to propagate click events from all views within DialogPlus.

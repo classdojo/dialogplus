@@ -26,15 +26,17 @@ dependencies {
   testImplementation deps.kotlin
 }
 
-afterEvaluate {
-  uploadArchives {
-    repositories {
-      mavenDeployer {
-        repository(url: "${artifactory_contextUrl}/list/libs-release-local") {
-          authentication(userName: "${artifactory_user}", password: "${artifactory_password}")
-        }
-        pom.project {
-          packaging 'aar'
+if (project.hasProperty("artifactory_contextUrl")) {
+  afterEvaluate {
+    uploadArchives {
+      repositories {
+        mavenDeployer {
+          repository(url: "${artifactory_contextUrl}/list/libs-release-local") {
+            authentication(userName: "${artifactory_user}", password: "${artifactory_password}")
+          }
+          pom.project {
+            packaging 'aar'
+          }
         }
       }
     }

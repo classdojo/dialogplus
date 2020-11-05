@@ -1,7 +1,8 @@
 package com.orhanobut.dialogplus;
 
-import android.support.annotation.NonNull;
 import android.view.View;
+
+import androidx.annotation.NonNull;
 
 /**
  * It is used to propagate click events for {@link ListHolder} and {@link GridHolder}
